@@ -1,36 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MoKePun
+﻿namespace MoKePun
 {
     internal class Game
     {
-        public void Start()
+        internal void Start()
         {
+            //Vi opretter to tomme lister af typen Card
             List<Card> P1Deck = new List<Card>();
-            P1Deck = AddCards(P1Deck);
             List<Card> P2Deck = new List<Card>();
+            //Vi kalder vores AddCards metode, og returnerer en liste 
+            //som består af vores 4 characters.
+            P1Deck = AddCards(P1Deck);
             P2Deck = AddCards(P2Deck);
 
-            Card c1, c2;
-            do { c1 = ChooseCard(P1Deck); } while (c1 == null);
-            do { c2 = ChooseCard(P2Deck); } while (c2 == null);
+            //Vi opretter 2 nye objekter udenfor vores do scope, fordi
+            //at do scopet er for lokalt til at vi kan checke på variablen
+            //i vores while check
+            Card activeCardP1, activeCardP2;
+            do { activeCardP1 = ChooseCard(P1Deck); } while (activeCardP1 == null);
+            do { activeCardP2 = ChooseCard(P2Deck); } while (activeCardP2 == null);
 
-            Console.WriteLine($"Player 1 have selected: {c1.Name}");
-            Console.WriteLine($"Player 2 have selected: {c2.Name}");
+            Console.WriteLine($"Player 1 have selected: {activeCardP1.Name}");
+            Console.WriteLine($"Player 2 have selected: {activeCardP2.Name}");
             Console.ReadKey();
         }
 
+        //ChooseCard modtager en liste af kort og returnerer et enkelt kort
         private Card ChooseCard(List<Card> CardDeck)
         {
+            //Vi udskriver på skærmen, med nummer, navn, type og HP
             foreach (Card card in CardDeck)
             {
                 Console.WriteLine(
                     $"Nr:{CardDeck.IndexOf(card)}\nNavn:{card.Name}\nType:{card.Type}\nHP:{card.HitPoints}\n");
             }
 
+            Console.WriteLine("Choose your card wisely (Numpad 0-3): ");
+
+            //Modtager et tasteturtryk og laver en switch/case
             ConsoleKey ck = Console.ReadKey(true).Key;
 
+            //switchen checker på casen, og hvis de er identiske køres koden efter
+            //kolonnet og indtil en evt. break eller return
             switch (ck)
             {
                 case ConsoleKey.NumPad0:
@@ -48,6 +58,7 @@ namespace MoKePun
                 default:
                     return null;
             }
+            //Her ville den ende hvis vi brugte break istedet for return
         }
 
         void ShowInput(ConsoleKey ck)
