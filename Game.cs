@@ -69,8 +69,9 @@
         void CombatEngine(Card Player1, Card Player2)
         {
         }
-        public List<Card> AddCards(List<Card> cards)
+        public List<Card> AddCards(List<Card> cardList)
         {
+            //Instantierer vi et object af typen Card, og indsætter data samtidig.
             Card card1 = new Card()
             {
                 Name = "Imoen",
@@ -89,23 +90,20 @@
                 HitPoints = 100,
                 Type = CharacterType.Wizard
             };
-            Card card4 = new Card()
-            {
-                Name = "Captain Birdseye",
-                HitPoints = 100,
-                Type = CharacterType.Priest
-            };
+            //Her instantierer vi og efterfølgende indsætter data.
+            Card card4 = new Card();
+            card4.Name = "Captain Birdseye";
+            card4.HitPoints = 100;
+            card4.Type = CharacterType.Priest;
 
-            cards.Add(card1);
-            cards.Add(card2);
-            cards.Add(card3);
-            cards.Add(card4);
+            //Tilsidst bliver vores nye instancer af objectet cards tilføjet til listen
+            //og returneret tilbage til vores metodekald
+            cardList.Add(card1);
+            cardList.Add(card2);
+            cardList.Add(card3);
+            cardList.Add(card4);
 
-            return cards;
+            return cardList;
         }
     }
-
-
-
-
 }
