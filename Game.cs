@@ -5,19 +5,19 @@
         internal void Start()
         {
             //Vi opretter to tomme lister af typen Card
-            List<Card> P1Deck = new List<Card>();
-            List<Card> P2Deck = new List<Card>();
+            List<Card> p1Deck = new List<Card>();
+            List<Card> p2Deck = new List<Card>();
             //Vi kalder vores AddCards metode, og returnerer en liste 
             //som består af vores 4 characters.
-            P1Deck = AddCards(P1Deck);
-            P2Deck = AddCards(P2Deck);
+            p1Deck = AddCards(p1Deck);
+            p2Deck = AddCards(p2Deck);
 
             //Vi opretter 2 nye objekter udenfor vores do scope, fordi
             //at do scopet er for lokalt til at vi kan checke på variablen
             //i vores while check
             Card activeCardP1, activeCardP2;
-            do { activeCardP1 = ChooseCard(P1Deck); } while (activeCardP1 == null);
-            do { activeCardP2 = ChooseCard(P2Deck); } while (activeCardP2 == null);
+            do { activeCardP1 = ChooseCard(p1Deck); } while (activeCardP1 == null);
+            do { activeCardP2 = ChooseCard(p2Deck); } while (activeCardP2 == null);
 
             Console.WriteLine($"Player 1 have selected: {activeCardP1.Name}");
             Console.WriteLine($"Player 2 have selected: {activeCardP2.Name}");
@@ -25,13 +25,13 @@
         }
 
         //ChooseCard modtager en liste af kort og returnerer et enkelt kort
-        private Card ChooseCard(List<Card> CardDeck)
+        private Card ChooseCard(List<Card> cardDeck)
         {
             //Vi udskriver på skærmen, med nummer, navn, type og HP
-            foreach (Card card in CardDeck)
+            foreach (Card card in cardDeck)
             {
                 Console.WriteLine(
-                    $"Nr:{CardDeck.IndexOf(card)}\nNavn:{card.Name}\nType:{card.Type}\nHP:{card.HitPoints}\n");
+                    $"Nr:{cardDeck.IndexOf(card)}\nNavn:{card.Name}\nType:{card.Type}\nHP:{card.HitPoints}\n");
             }
 
             Console.WriteLine("Choose your card wisely (Numpad 0-3): ");
@@ -45,16 +45,16 @@
             {
                 case ConsoleKey.NumPad0:
                     ShowInput(ck);
-                    return CardDeck[0];
+                    return cardDeck[0];
                 case ConsoleKey.NumPad1:
                     ShowInput(ck);
-                    return CardDeck[1];
+                    return cardDeck[1];
                 case ConsoleKey.NumPad2:
                     ShowInput(ck);
-                    return CardDeck[2];
+                    return cardDeck[2];
                 case ConsoleKey.NumPad3:
                     ShowInput(ck);
-                    return CardDeck[3];
+                    return cardDeck[3];
                 default:
                     return null;
             }
